@@ -376,3 +376,312 @@ GET
     "path": "/Users/代码/网站相关/lavarel7/xxxx/public"   //存储绝对路径
 }
 ```
+
+
+### 前往
+
+获取指定路径下的文件列表
+
+#### 请求URL:
+
+- http://xx.com/api/admin/file/path
+
+#### 请求方式：
+
+- GET
+
+#### 请求头：
+
+|参数名|是否必须|类型|说明|
+|:----    |:---|:----- |-----   |
+|Content-Type |是  |string |请求类型： application/json   |
+|Authorization |是  |string |Bearer + TOKEN  注意：Bearer 后要带一个空格   |
+
+#### 请求参数:
+
+|参数名|是否必须|类型|说明|
+|:----    |:---|:----- |-----   |
+|path |是  | string | 绝对路径  如 /xxxx/text |
+
+#### 返回示例:
+
+
+```json
+{
+    "list": [
+        ".",
+        "..",
+        ".DS_Store",
+        "2020"
+    ],
+    "path": "/Users/代码/网站相关/lavarel7/storage/app/public/uploads"
+}
+```
+
+### 创建文件夹
+
+#### 请求URL:
+
+- http://xx.com/api/admin/dir/create
+
+#### 请求方式：
+
+- POST
+
+|参数名|是否必须|类型|说明|
+|:----    |:---|:----- |-----   |
+|Content-Type |是  |string |请求类型： application/json   |
+|Authorization |是  |string |Bearer + TOKEN  注意：Bearer 后要带一个空格   |
+
+#### 请求参数:
+
+|参数名|是否必须|类型|说明|
+|:----    |:---|:----- |-----   |
+|path |是  | string | 绝对路径  如 /xxxx/text/+文件夹名称 |
+
+```json
+{
+    "message": "ok"
+}
+```
+
+
+### 删除文件夹
+
+#### 请求URL:
+
+- http://xx.com/api/admin/dir/delete
+
+#### 请求方式：
+
+- DELETE
+
+|参数名|是否必须|类型|说明|
+|:----    |:---|:----- |-----   |
+|Content-Type |是  |string |请求类型： application/json   |
+|Authorization |是  |string |Bearer + TOKEN  注意：Bearer 后要带一个空格   |
+
+#### 请求参数:
+
+|参数名|是否必须|类型|说明|
+|:----    |:---|:----- |-----   |
+|path |是  | string | 绝对路径  如 /xxxx/text/+文件夹名称 |
+
+```json
+{
+    "message": "ok"
+}
+```
+
+
+### 创建文件
+
+默认创建权限 755
+
+#### 请求URL:
+
+- http://xx.com/api/admin/file/create
+
+#### 请求方式：
+
+- POST
+
+|参数名|是否必须|类型|说明|
+|:----    |:---|:----- |-----   |
+|Content-Type |是  |string |请求类型： application/json   |
+|Authorization |是  |string |Bearer + TOKEN  注意：Bearer 后要带一个空格   |
+
+#### 请求参数:
+
+|参数名|是否必须|类型|说明|
+|:----    |:---|:----- |-----   |
+|path |是  | string | 绝对路径  如 /xxxx/text/+ txt.php |
+
+```json
+{
+    "message": "ok"
+}
+```
+
+#### 错误时返回:
+
+
+```json
+{
+    "error": "创建失败，检查权限，或者函数是否释放。"
+}
+```
+
+### 删除文件
+
+
+#### 请求URL:
+
+- http://xx.com/api/admin/file/delete
+
+#### 请求方式：
+
+- DELETE
+
+|参数名|是否必须|类型|说明|
+|:----    |:---|:----- |-----   |
+|Content-Type |是  |string |请求类型： application/json   |
+|Authorization |是  |string |Bearer + TOKEN  注意：Bearer 后要带一个空格   |
+
+#### 请求参数:
+
+|参数名|是否必须|类型|说明|
+|:----    |:---|:----- |-----   |
+|path |是  | string | 绝对路径  如 /xxxx/text/+ txt.php |
+
+```json
+{
+    "message": "ok"
+}
+```
+
+#### 错误时返回:
+
+
+```json
+{
+    "error": "创建失败，检查权限，或者函数是否释放。"
+}
+```
+
+### 重命名
+
+
+
+#### 请求URL:
+
+- http://xx.com/api/admin/file/rename
+
+#### 请求方式：
+
+- PUT
+
+|参数名|是否必须|类型|说明|
+|:----    |:---|:----- |-----   |
+|Content-Type |是  |string |请求类型： application/json   |
+|Authorization |是  |string |Bearer + TOKEN  注意：Bearer 后要带一个空格   |
+
+#### 请求参数:
+
+|参数名|是否必须|类型|说明|
+|:----    |:---|:----- |-----   |
+|path |是  | string | 绝对路径  如 /xxxx/text/+ xxx |
+
+```json
+{
+    "message": "ok"
+}
+```
+
+#### 错误时返回:
+
+
+```json
+{
+    "error": "创建失败，检查权限，或者函数是否释放。"
+}
+```
+
+### 文件下载
+
+
+#### 请求URL:
+
+- http://xx.com/api/admin/file/download
+
+#### 请求方式：
+
+- POST
+
+|参数名|是否必须|类型|说明|
+|:----    |:---|:----- |-----   |
+|Content-Type |是  |string |请求类型： application/json   |
+|Authorization |是  |string |Bearer + TOKEN  注意：Bearer 后要带一个空格   |
+
+#### 请求参数:
+
+|参数名|是否必须|类型|说明|
+|:----    |:---|:----- |-----   |
+|path |是  | string | 绝对路径  如 /xxxx/text/+ xxx |
+
+```json
+  //直接发起浏览器下载
+```
+
+
+### 读取文件
+
+
+
+#### 请求URL:
+
+- http://xx.com/api/admin/file/content
+
+#### 请求方式：
+
+- GET
+
+|参数名|是否必须|类型|说明|
+|:----    |:---|:----- |-----   |
+|Content-Type |是  |string |请求类型： application/json   |
+|Authorization |是  |string |Bearer + TOKEN  注意：Bearer 后要带一个空格   |
+
+#### 请求参数:
+
+|参数名|是否必须|类型|说明|
+|:----    |:---|:----- |-----   |
+|path |是  | string | 绝对路径  如 /xxxx/text/+ xxx |
+
+```json
+{
+    "data": "..."
+}
+```
+
+
+
+
+
+
+
+
+
+### 保存文件
+
+
+
+#### 请求URL:
+
+- http://xx.com/api/admin/file/update
+
+#### 请求方式：
+
+- PUT
+
+|参数名|是否必须|类型|说明|
+|:----    |:---|:----- |-----   |
+|Content-Type |是  |string |请求类型： application/json   |
+|Authorization |是  |string |Bearer + TOKEN  注意：Bearer 后要带一个空格   |
+
+#### 请求参数:
+
+|参数名|是否必须|类型|说明|
+|:----    |:---|:----- |-----   |
+|path |是  | string | 绝对路径  如 /xxxx/text/+ xxx |
+
+```json
+{
+    "message": "ok"
+}
+```
+
+
+
+
+
+
