@@ -1,7 +1,12 @@
 module.exports = [
   { text: '首页', link: '/', icon: 'reco-home' },
   { text: '时间线', link: '/timeline/', icon: 'reco-date' },
-  { text: '文档', link: '/views/cms/', icon: 'reco-document' },
+  { text: '文档', link: '/views/cms/', icon: 'reco-document',
+   items: [
+    { text: '后端文档', link: '/views/cms/', icon: 'reco-document' },
+    { text: '标签速查', link: '/views/tag/', icon: 'reco-document' },
+  ]
+},
   { text: '联系', 
     icon: 'reco-message',
     items: [
