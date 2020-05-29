@@ -5,7 +5,7 @@ date: 2020-04-10
 
 
 ::: tip 介绍
-一个没有感情的文档。<br>
+
 
 :::
 
@@ -672,6 +672,145 @@ GET
     "message": "ok"
 }
 ```
+
+## 幻灯片管理
+
+### 创建幻灯片
+
+#### 请求URL:
+
+- http://xx.com/api/banners
+
+#### 请求方式：
+
+- POST
+
+#### 请求头：
+
+|参数名|是否必须|类型|说明|
+|:----    |:---|:----- |-----   |
+|Content-Type |是  |string |请求类型： application/json   |
+|Authorization |是  |string |Bearer + TOKEN  注意：Bearer 后要带一个空格   |
+
+
+#### 请求参数:
+
+|参数名|是否必须|类型|说明|
+|:----    |:---|:----- |-----   |
+|title |是  |string |幻灯片标题   |
+|description |是  |string | 描述    |
+|banners |是  |json | 幻灯片内容 注意是json类型   |
+
+
+#### 返回示例:
+
+
+```json
+   //返回刚创建的banner对象
+```
+
+
+### 更新幻灯片
+
+#### 请求URL:
+
+- http://xx.com/api/banners/{id}
+
+#### 请求方式：
+
+- PUT
+
+#### 请求头：
+
+|参数名|是否必须|类型|说明|
+|:----    |:---|:----- |-----   |
+|Content-Type |是  |string |请求类型： application/json   |
+|Authorization |是  |string |Bearer + TOKEN  注意：Bearer 后要带一个空格   |
+
+
+#### 请求参数:
+
+|参数名|是否必须|类型|说明|
+|:----    |:---|:----- |-----   |
+|title |是  |string |幻灯片标题   |
+|description |是  |string | 描述    |
+|banners |是  |json | 幻灯片内容 注意是json类型   |
+
+
+#### 返回示例:
+
+
+```json
+{
+    "message": "ok"
+}
+```
+
+
+
+
+### 删除幻灯片
+
+#### 请求URL:
+
+- http://xx.com/api/banners/{id}
+
+#### 请求方式：
+
+- DELETE
+
+#### 请求头：
+
+|参数名|是否必须|类型|说明|
+|:----    |:---|:----- |-----   |
+|Content-Type |是  |string |请求类型： application/json   |
+|Authorization |是  |string |Bearer + TOKEN  注意：Bearer 后要带一个空格   |
+
+
+
+
+#### 返回示例:
+
+
+```json
+ //返回http204状态码 
+```
+
+
+
+
+
+
+### 幻灯片列表
+
+#### 请求URL:
+
+- http://xx.com/api/banners
+
+#### 请求方式：
+
+- GET
+
+#### 请求头：
+
+|参数名|是否必须|类型|说明|
+|:----    |:---|:----- |-----   |
+|Content-Type |是  |string |请求类型： application/json   |
+|Authorization |是  |string |Bearer + TOKEN  注意：Bearer 后要带一个空格   |
+
+
+
+
+#### 返回示例:
+
+
+```json
+{
+    "data": []
+}
+```
+
+
 
 
 
