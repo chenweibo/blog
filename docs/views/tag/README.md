@@ -8,65 +8,93 @@ date: 2020-04-14
 ### 数据迁移(强制恢复)
 
 ```bash
-   php artisan migrate:reset  //强制重新生成表结构
+   php artisan rest:db  //强制重新生成表结构,填充数据
 ```
 
-### 数据迁移
 
-```bash
-   php artisan migrate //强制重新生成表结构
-```
-
-### 数据填充
-
-```bash
-   php artisan db:seed  //生成默认数据
-```
 ## PSR规范
-
-### 格式化
 
 ```bash
    composer run-script phpcs  //自动修复php文件为行业规范
 ```
 
-## 数据缓存
-
-::: tip 介绍
-1.如项目需要切换操作系统需清除各项缓存<br>
-:::
 
 
 
-### 清除配置信息缓存
-
-```bash
-   php artisan config:clear
-```
-### 清除路由缓存
-
-```bash
-   php artisan route:clear
-```
-
-### 清除视图缓存
-
-```bash
-   php artisan view:clear
-```
 
 ## blade模版语法
 
 
-
-### 全局栏目
-
-``` blade
-{{ $globalMenu }}
-```
-
 ### 站点信息
-$site 为数组
-``` blade
-{{ $site['title'] }}
+
+``` php
+//防止报没键值错误
+{{ check('title',$site) }}
 ```
+
+### 栏目
+
+``` php
+<ul>
+@foreach($globalMenu as $v)
+     //栏目url                              标题
+    <li href="{{$v['blade_url']}}"> {{$v['title']}} </li>
+    // $globalMenu 树形结构 如有子集
+    @if(count($v['children']))
+        <ul class="mchildren">
+            @foreach($v['children'] as $vo)
+             <a href="{{$vo['blade_url']}}">{{$vo['title']}}</a>
+            @endforeach
+        </ul>
+    @endif
+    ...
+    @endforeach
+</ul>
+```
+
+### 列表页
+
+| **变量**| **类型**  | **一句话描述** |
+| ---- | ---- |---- |
+| $menu | model|栏目信息
+| $content['data'] | model| 列表页关联的内容
+| $content['hasChildren'] | bool| 是否还有子类
+
+
+#### example1
+
+>获取列表页内容
+
+``` php
+@foreach($content['data'] as $v)
+    <dd class="col-lg-3 col-xs-6">
+        <div class="boxP">
+                  //url
+            <a href="{{$vo['blade_url']}}">
+                 //缩略图
+                <img src="{{url(check('thumbnail',$v->data))}}"/>
+            </a>
+            <div class="hoverLayer">
+                <div class="yCenter">
+                    <h3>{{$v->title}}</h3>
+                </div>
+            </div>
+        </div>
+    </dd>
+@endforeach
+
+//分页
+{{$content['data']->links('vendor.pagination.default')}}
+```
+
+
+### 详情页
+
+| **变量**| **类型**  | **一句话描述** |
+| ---- | ---- |---- |
+| $menu | model|栏目信息
+| $content | model| 内容
+| $content->prew | model| 上一页
+| $content->next | model| 下一页
+| $content->data | array| 自定义标签
+| $content->menu | model| 获取关联的栏目
