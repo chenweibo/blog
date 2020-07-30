@@ -70,7 +70,15 @@ date: 2020-04-14
     <dd class="col-lg-3 col-xs-6">
         <div class="boxP">
                   //url
-            <a href="{{$vo['blade_url']}}">
+            <a
+            
+             @if($content['hasChildren'])
+                href="/content/{{$v->id}}"
+                @else
+                href="/contentView/{{$v->id}}"
+            @endif
+        
+            >
                  //缩略图
                 <img src="{{url(check('thumbnail',$v->data))}}"/>
             </a>
